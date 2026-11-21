@@ -1,0 +1,11 @@
+# The contest's development corpus is participant-only; never publish it.
+/dev/
+/screening-dev-browse.xlsx
+
+# Local Python and editor artifacts.
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+
+# Keep output/dev.jsonl: it is an explicit contest deliverable.

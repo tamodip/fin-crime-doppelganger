@@ -1,0 +1,42 @@
+{
+  "summary": {
+    "hits": 3,
+    "alerts": 3,
+    "decisions": {"DIFFERENT_ENTITY": 1, "SAME_ENTITY": 1, "REVIEW": 1},
+    "reason_codes": {"DOB_MISMATCH": 1, "NAME_DOB_LOCATION_MATCH": 1, "INSUFFICIENT_DATA": 1}
+  },
+  "hits": [
+    {"hit_id":"H-A11CE1","alert_id":"A-A11CE1","decision":"DIFFERENT_ENTITY","reason_code":"DOB_MISMATCH","customer_name":"Amira Lewis","hit_name":"Amira Lewis","category":"Adverse Media","evidence_count":3,"customer_record_id":"CUS-000101"},
+    {"hit_id":"H-B22CE2","alert_id":"A-B22CE2","decision":"SAME_ENTITY","reason_code":"NAME_DOB_LOCATION_MATCH","customer_name":"Zara Ahmed","hit_name":"Ahmed, Zara","category":"PEP","evidence_count":5,"customer_record_id":"CUS-000202"},
+    {"hit_id":"H-C33CE3","alert_id":"A-C33CE3","decision":"REVIEW","reason_code":"INSUFFICIENT_DATA","customer_name":"Li Wei","hit_name":"Wei Li","category":"Enforcement","evidence_count":2,"customer_record_id":"CUS-000303"}
+  ],
+  "details": {
+    "H-A11CE1": {
+      "output":{"hit_id":"H-A11CE1","alert_id":"A-A11CE1","decision":"DIFFERENT_ENTITY","reason_code":"DOB_MISMATCH","customer_record_id":"CUS-000101","reason":"The customer's date of birth is 1987-06-20 (KYC-DEMO-101), but the hit lists 1970-01-03. Every DOB supplied for the hit is contradicted, so it is DIFFERENT_ENTITY.","evidence":["CUS-000101","KYC-DEMO-101","H-A11CE1#dobs","H-A11CE1#name"]},
+      "alert":{"alert_id":"A-A11CE1","screened_at":"2026-11-01","customer":{"name":"Amira Lewis","entity_type":"Individual","dob":null,"country":"United Kingdom","city":null},"account_ref":"ACC-DEMO-101","login_handle":null,"email":null,"hit_ids":["H-A11CE1"]},
+      "hit":{"hit_id":"H-A11CE1","alert_id":"A-A11CE1","match_score":92,"entity_type":"Individual","name":"Amira Lewis","aliases":[],"dobs":["1970-01-03"],"countries":["United States"],"addresses":[],"categories":["Adverse Media"],"primary_category":"Adverse Media","profile_notes":"A fictional profile used only to illustrate the audit trail.","deceased_date":null},
+      "customer_groups":[{"records":["CUS-000101"],"names":["Amira Lewis"],"verified_name":"Amira Lewis","verified_source":"KYC-DEMO-101","dob":"1987-06-20","dob_source":"KYC-DEMO-101","countries":["United Kingdom"],"entity_type":"Individual","country_sources":{"United Kingdom":["CUS-000101"]}}],
+      "accounts":[{"account_id":"ACC-DEMO-101","customer_id":"CUS-000101"}],"kyc_checks":[{"check_id":"KYC-DEMO-101","result":"approved","verified_name":"Amira Lewis","verified_dob":"1987-06-20","document_country":"United Kingdom","checked_at":"2025-05-12"}],"customer_notes":[],
+      "hit_facts":{"hit_names":["Amira Lewis"],"hit_dobs":["1970-01-03"],"hit_countries":["United States"],"category":"Adverse Media","profile_excerpt":"A fictional profile used only to illustrate the audit trail."},
+      "evidence":[{"id":"CUS-000101","type":"Customer record","label":"Customer record","value":{"record_id":"CUS-000101","full_name":"Amira Lewis","entity_type":"Individual","residence_country":"United Kingdom"}},{"id":"KYC-DEMO-101","type":"Identity check","label":"Approved identity check","value":{"check_id":"KYC-DEMO-101","verified_name":"Amira Lewis","verified_dob":"1987-06-20","document_country":"United Kingdom","result":"approved"}},{"id":"H-A11CE1#dobs","type":"Hit profile field","label":"Listed date of birth","value":["1970-01-03"]},{"id":"H-A11CE1#name","type":"Hit profile field","label":"Name","value":"Amira Lewis"}]
+    },
+    "H-B22CE2": {
+      "output":{"hit_id":"H-B22CE2","alert_id":"A-B22CE2","decision":"SAME_ENTITY","reason_code":"NAME_DOB_LOCATION_MATCH","customer_record_id":"CUS-000202","reason":"The customer's DOB 1990-02-11 (KYC-DEMO-202) agrees with the hit's listed date of birth 1990-02-11, and the customer's name Zara Ahmed agrees with hit name Ahmed, Zara. Both are also linked to Nigeria, with no contradictory identity fact.","evidence":["CUS-000202","KYC-DEMO-202","H-B22CE2#dobs","H-B22CE2#name","H-B22CE2#countries"]},
+      "alert":{"alert_id":"A-B22CE2","screened_at":"2026-11-04","customer":{"name":"Zara Ahmed","entity_type":"Individual","dob":null,"country":"Nigeria","city":null},"account_ref":"ACC-DEMO-202","login_handle":null,"email":null,"hit_ids":["H-B22CE2"]},
+      "hit":{"hit_id":"H-B22CE2","alert_id":"A-B22CE2","match_score":98,"entity_type":"Individual","name":"Ahmed, Zara","aliases":["Zarah Ahmed"],"dobs":["1990-02-11"],"countries":["Nigeria"],"addresses":["Lagos, Nigeria"],"categories":["PEP"],"primary_category":"PEP","profile_notes":"A fictional profile used only to illustrate the audit trail.","deceased_date":null},
+      "customer_groups":[{"records":["CUS-000202"],"names":["Zara Ahmed"],"verified_name":"Zara Ahmed","verified_source":"KYC-DEMO-202","dob":"1990-02-11","dob_source":"KYC-DEMO-202","countries":["Nigeria"],"entity_type":"Individual","country_sources":{"Nigeria":["CUS-000202"]}}],
+      "accounts":[{"account_id":"ACC-DEMO-202","customer_id":"CUS-000202"}],"kyc_checks":[{"check_id":"KYC-DEMO-202","result":"approved","verified_name":"Zara Ahmed","verified_dob":"1990-02-11","document_country":"Nigeria","checked_at":"2025-08-24"}],"customer_notes":[],
+      "hit_facts":{"hit_names":["Ahmed, Zara","Zarah Ahmed"],"hit_dobs":["1990-02-11"],"hit_countries":["Nigeria"],"category":"PEP","profile_excerpt":"A fictional profile used only to illustrate the audit trail."},
+      "evidence":[{"id":"CUS-000202","type":"Customer record","label":"Customer record","value":{"record_id":"CUS-000202","full_name":"Zara Ahmed","entity_type":"Individual","residence_country":"Nigeria"}},{"id":"KYC-DEMO-202","type":"Identity check","label":"Approved identity check","value":{"check_id":"KYC-DEMO-202","verified_name":"Zara Ahmed","verified_dob":"1990-02-11","document_country":"Nigeria","result":"approved"}},{"id":"H-B22CE2#dobs","type":"Hit profile field","label":"Listed date of birth","value":["1990-02-11"]},{"id":"H-B22CE2#name","type":"Hit profile field","label":"Name","value":"Ahmed, Zara"},{"id":"H-B22CE2#countries","type":"Hit profile field","label":"Countries","value":["Nigeria"]}]
+    },
+    "H-C33CE3": {
+      "output":{"hit_id":"H-C33CE3","alert_id":"A-C33CE3","decision":"REVIEW","reason_code":"INSUFFICIENT_DATA","customer_record_id":"CUS-000303","reason":"The customer's name agrees with hit name Wei Li. The customer's verified or declared date of birth is unavailable for comparison with the hit.","evidence":["CUS-000303","H-C33CE3#name"]},
+      "alert":{"alert_id":"A-C33CE3","screened_at":"2026-11-10","customer":{"name":"Li Wei","entity_type":"Individual","dob":null,"country":"Singapore","city":null},"account_ref":"ACC-DEMO-303","login_handle":null,"email":null,"hit_ids":["H-C33CE3"]},
+      "hit":{"hit_id":"H-C33CE3","alert_id":"A-C33CE3","match_score":89,"entity_type":"Individual","name":"Wei Li","aliases":[],"dobs":[],"countries":["Singapore"],"addresses":[],"categories":["Enforcement"],"primary_category":"Enforcement","profile_notes":"A fictional profile used only to illustrate the audit trail.","deceased_date":null},
+      "customer_groups":[{"records":["CUS-000303"],"names":["Li Wei"],"verified_name":null,"verified_source":null,"dob":"Unknown","dob_source":null,"countries":["Singapore"],"entity_type":"Individual","country_sources":{"Singapore":["CUS-000303"]}}],
+      "accounts":[{"account_id":"ACC-DEMO-303","customer_id":"CUS-000303"}],"kyc_checks":[],"customer_notes":[],
+      "hit_facts":{"hit_names":["Wei Li"],"hit_dobs":[],"hit_countries":["Singapore"],"category":"Enforcement","profile_excerpt":"A fictional profile used only to illustrate the audit trail."},
+      "evidence":[{"id":"CUS-000303","type":"Customer record","label":"Customer record","value":{"record_id":"CUS-000303","full_name":"Li Wei","entity_type":"Individual","residence_country":"Singapore"}},{"id":"H-C33CE3#name","type":"Hit profile field","label":"Name","value":"Wei Li"}]
+    }
+  }
+}

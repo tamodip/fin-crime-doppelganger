@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "One line of a screening output file",
+  "type": "object",
+  "required": [
+    "hit_id",
+    "alert_id",
+    "decision",
+    "reason_code",
+    "customer_record_id",
+    "reason",
+    "evidence"
+  ],
+  "properties": {
+    "hit_id": {
+      "type": "string",
+      "pattern": "^H-[0-9A-F]{6}$"
+    },
+    "alert_id": {
+      "type": "string",
+      "pattern": "^A-[0-9A-F]{6}$"
+    },
+    "decision": {
+      "enum": [
+        "DIFFERENT_ENTITY",
+        "SAME_ENTITY",
+        "REVIEW"
+      ]
+    },
+    "reason_code": {
+      "enum": [
+        "TEMPORAL_IMPOSSIBILITY",
+        "DOB_MISMATCH",
+        "LOCATION_MISMATCH",
+        "NAME_MISMATCH_VERIFIED",
+        "ENTITY_TYPE_MISMATCH",
+        "DECEASED",
+        "NAME_DOB_LOCATION_MATCH",
+        "NAME_DOB_MATCH",
+        "NAME_LOCATION_MATCH",
+        "INSUFFICIENT_DATA",
+        "AMBIGUOUS_CUSTOMER_RECORD"
+      ]
+    },
+    "customer_record_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(CUS-[0-9]{6}|AMBIGUOUS)$"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "DIFFERENT_ENTITY"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "TEMPORAL_IMPOSSIBILITY",
+              "DOB_MISMATCH",
+              "LOCATION_MISMATCH",
+              "NAME_MISMATCH_VERIFIED",
+              "ENTITY_TYPE_MISMATCH",
+              "DECEASED"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "SAME_ENTITY"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "NAME_DOB_LOCATION_MATCH",
+              "NAME_DOB_MATCH",
+              "NAME_LOCATION_MATCH"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "REVIEW"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "INSUFFICIENT_DATA",
+              "AMBIGUOUS_CUSTOMER_RECORD"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
